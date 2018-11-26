@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- import stylesheet, and vue -->
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <title>Vue JS</title>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!-- CODE GOES HERE -->
+    <div class="demo" @click="attachedRed = !attachedRed" :class="{red: attachedRed}"></div>
+    <div class="demo" @click="attachedGreen = !attachedGreen" :class="{green: attachedGreen}"></div>
+    <div class="demo" @click="attachedBlue = !attachedBlue" :class="{blue: attachedBlue}"></div>
+    <div class="demo" @click="attachedYellow = !attachedYellow" :class="{yellow : attachedYellow}"></div>
+
+  </div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>
