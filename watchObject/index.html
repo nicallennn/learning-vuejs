@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <title>Vue JS</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <!-- v-on:click event -> increment counter property  -->
+    <button v-on:click="counter++">Increase</button>
+    <button v-on:click="counter--">Decrease</button>
+    <!-- shows the value of the counter -->
+    <p> {{ counter }} </p>
+
+    <!-- uses the output propety from the computed object -> only re-computed when neccessary -> use where possible, cant run ASYNC -->
+    <p> {{ output }} </p>
+
+
+    <script src="index.js"></script>
+</body>
+
+</html>

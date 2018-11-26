@@ -2,9 +2,8 @@
 new Vue({
   el: '#app',
   data: {
-    title: 'Template'
+    name: 'Nick'
   },
   methods: {
-
   }
 })
