@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+  <!-- Import styles & VUE JS-->
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <title>Vue JS</title>
@@ -14,12 +16,94 @@
 <body>
 
   <div id="app">
+    <h1>Hello</h1>
 
     <!-- CODE GOES HERE -->
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+    <button-counter></button-counter>
+
+    <br><br><hr>
+
+    <!-- PRINT ALL BLOG POSTS IN DATA.POSTS[] ARRAY -->
+    <h3>Printed using blog-post component template -> title and description passed into props array of component</h3>
+    <blog-post title="First Post" description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum maxime enim aliquam rerum, molestiae ab cum illo a
+    soluta, consequuntur distinctio, culpa veniam obcaecati expedita."></blog-post>
+    
+    <blog-post title="Second Post" description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum maxime enim aliquam rerum, molestiae ab cum illo a
+    soluta, consequuntur distinctio, culpa veniam obcaecati expedita."></blog-post>
+
+    <blog-post title="Third Post" description="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nostrum maxime enim aliquam rerum, molestiae ab cum illo a
+    soluta, consequuntur distinctio, culpa veniam obcaecati expedita."></blog-post>
+
+    <br><br><hr>
+
+    <!-- PRINT ALL BLOG POSTS IN DATA.POSTS[] ARRAY -->
+    <h3>Printed using a loop -> post in posts -> passing object properties to components using props array</h3>
+    <blog-post 
+    v-for="post in posts"
+    v-bind:key="post.id"
+    v-bind:title="post.title"
+    v-bind:description="post.description"
+    v-bind:date="post.date"
+    ></blog-post> 
+
+
+    <br><br><hr>
 
   </div>
 
-  <script src="index.js"></script>
+  <script>
+
+    /**********************/
+    /***** COMPONENTS *****/
+    /**********************/
+
+    Vue.component('button-counter', {
+      data: function () {
+        return {
+          count: 0
+        }
+      },
+      template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+    })
+
+    //blog post component -> passing in props information -> title, description
+    Vue.component('blog-post', {
+      props: ['title', 'description', 'date'],
+      template: 
+        '<div><h3>{{ title }}</h3><p>{{ description }}</p></div>'
+        
+    })
+
+
+    /*****************************/
+    /***** MAIN APP INSTANCE *****/
+    /*****************************/
+
+    var app = new Vue({
+      el: '#app',
+      data: {
+        posts: [{
+        id: 1,
+        title: 'Title One',
+        description: 'Nostrum maxime enim aliquam rerum, molestiae ab cum illo a doh gestss.',
+        date: '7/11/17'
+      }, {
+        id: 2,
+        title: 'Title Two',
+        description: 'Nostrum maxime enim aliquam rerum, molestiae ab cum illo a doh gestss.',
+        date: '7/11/17'
+      }, {
+        id: 3,
+        title: 'Title Three',
+        description: 'Nostrum maxime enim aliquam rerum, molestiae ab cum illo a doh gestss.',
+        date: '7/11/17'
+      }]
+      }
+    })
+
+  </script>
 </body>
 
 </html>
