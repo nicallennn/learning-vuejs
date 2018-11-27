@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Import styles & VUE JS-->
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <title>Vue JS</title>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!-- CODE GOES HERE -->
+    <h1>{{ title }}</h1>
+
+    <hr>
+
+    <!-- v-for list example -->
+    <h3>Using v-for="item in items -> (array)" -> on keyup in input, a list of filtered results is displayed in lieu of
+      the original list</h3>
+
+    <template v-if="!showFiltered">
+      <ul>
+        <li v-for="item in items">
+          {{ item.message}}
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <ul>
+        <li v-for="fiterItem in filteredItems">
+          {{ fiterItem.message}}
+        </li>
+      </ul>
+    </template>
+
+
+
+    <!-- filter messages based on !regExpression -->
+    <button @click="filterList">Filter Items</button>
+    <!-- Filter messages based on user input -->
+    <input type="text" v-model="currentInputValue" @keyup="checkIfEmpty">
+
+    <hr>
+
+    <!-- v-for with objects -->
+    <h3>Using v-for="value in object -> (object)"</h3>
+    <ol>
+      <li v-for="value in nicksObject">
+        {{ value }}
+      </li>
+    </ol>
+
+    <hr>
+
+    <!-- v-for with objects -> get key : value pair -->
+    <h3>Using v-for="value,key in object -> (object -> key : value pairs)"</h3>
+    <ol>
+      <li v-for="value, key in nicksObject">
+        {{ key }} - {{ value }}
+      </li>
+    </ol>
+
+    <hr>
+
+    <!-- v-for with objects -> get key : value pair -->
+    <h3>Using v-for="value,key, index in object -> (object -> index, key, value)"</h3>
+    <ul>
+      <li v-for="value, key, index in nicksObject">
+        {{ index }} - {{ key }} - {{ value }}
+      </li>
+    </ul>
+
+
+  </div>
+  <!--END OF #APP -->
+
+  <script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        title: 'List Rendering',
+        currentInputValue: '',
+        showFiltered: false,
+        items: [
+          { message: 'Hello' },
+          { message: 'World' },
+          { message: 'From' },
+          { message: 'An' },
+          { message: 'Array' },
+          { message: 'Using v-for="item in items"' },
+        ],
+        nicksObject: {
+          firstName: 'Nick',
+          lastName: 'Allen',
+          age: 28,
+          hobbies: 'Coding, Skateboarding'
+        }
+      },
+      computed: {
+        filteredItems() {
+          return this.items.filter((item) => {
+            return item.message.includes(this.currentInputValue)
+          })
+        }
+      },
+      methods: {
+        filterList() {
+          this.items = this.items.filter((item) => {
+            return !item.message.match(/An/)
+          })
+        },
+        checkIfEmpty() {
+          if (this.currentInputValue === '') {
+            this.showFiltered = false
+          } else {
+            this.showFiltered = true
+          }
+        }
+      }
+    })
+
+  </script>
+</body>
+
+</html>
