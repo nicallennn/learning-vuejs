@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Import styles & VUE JS-->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <title>Vue JS</title>
+</head>
+
+<body>
+
+  <div id="app">
+    <button @click="show = !show">Show/Hide</button>
+
+    <!-- V-IF / V-IF-ELSE TO HIDE SHOW AN ELEMENT -->
+    <div v-if="show">
+      <p>Some text to hide and show.</p>
+    </div>
+    <div v-else-if="!show">
+      <p>Some other text to show...</p>
+    </div>
+    <div v-else>
+      <p>Something final to say, will never print !!!!!</p>
+    </div>
+
+    <!-- V-SHOW -->
+    <div v-show="show">
+      <label for="name-field">Name</label>
+      <input type="text">
+    </div>
+
+    <br><br>
+
+    <!-- SHOW HIDE TEMPLATE-->
+    <button @click="nameOrEmail"> {{ userNameEmailButtonText }}</button>
+    <template v-if="userNameOrEmail">
+      <label>Username</label>
+      <input placeholder="Username" key="username-input">
+    </template>
+    <template v-else>
+      <label>Email</label>
+      <input placeholder="Email" key="email-input">
+    </template>
+
+
+  </div><!-- END APP -->
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Template v2',
+        show: true,
+        userNameOrEmail: true,
+        userNameEmailButtonText: 'Email Login',
+
+      },
+      methods: {
+        nameOrEmail() {
+          this.userNameOrEmail = !this.userNameOrEmail
+
+          if (this.userNameOrEmail) {
+            this.userNameEmailButtonText = "Email Login"
+          } else {
+            this.userNameEmailButtonText = "Username Login"
+          }
+        }
+
+      }
+    })
+
+  </script>
+</body>
+
+</html>

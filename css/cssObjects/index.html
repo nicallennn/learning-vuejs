@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <!-- Import styles & VUE JS-->
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <title>Vue JS</title>
+</head>
+
+<body>
+
+  <div id="app">
+
+    <!-- CODE GOES HERE -->
+    <h1>{{ title }}</h1>
+    <h3>Css bind using computed properties</h3>
+    <div class="demo" @click="attachedRed = !attachedRed" :class="divClasses"></div>
+
+    <h3>Css bind using properties</h3>
+    <div class="demo" @click="attachedBlue = !attachedBlue" :class="{red: attachedRed}"></div>
+
+    <h3>Css bind using array of properties</h3>
+    <div class="demo" :class="[color, {red: attachedRed}]"></div>
+
+    <h3>Css bind using style directive -> backgroundColor == css command -> set from input field</h3>
+    <div class="demo" :style="{backgroundColor: color}"></div>
+
+    <h3>Css bind using style directive -> myStyle returns an object containing classes to attach, in this case, returns
+      the object passed into previous example</h3>
+    <div class="demo" :style="myStyle"></div>
+
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Css objects',
+        attachedRed: false,                 //booleans -> determines if css class is attached or not
+        attachedBlue: false,
+        color: 'green',                     //color property -> bound to input field
+        width: 100
+      },
+      computed: {
+        divClasses: function () {            //es5 function -> return css classes to bind
+          return {
+            red: this.attachedRed,
+            blue: !this.attachedRed
+          }
+        },
+        myStyle() {                           //es6 function -> return css style
+          return {
+            backgroundColor: this.color,      //returns css property *** is === 'background-color' css 
+            width: this.width + 'px'
+          }
+        }
+      },
+      methods: {
+
+      }
+    })
+
+  </script>
+</body>
+
+</html>

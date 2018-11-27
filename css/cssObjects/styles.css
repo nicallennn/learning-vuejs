@@ -1,3 +1,22 @@
+body {
+  background-color: black;
+  color: #999;
+  margin: 0;
+  font-family: sans-serif;
+  
+}
+
+#app {
+  background-color: #333;
+  padding: 20px;
+}
+
+#app h1 {
+  margin-top: 0;
+  margin-bottom: 40px;
+  color: #fc3;
+}
+
 .demo {
   width: 100px;
   height: 100px;
